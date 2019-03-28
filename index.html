@@ -170,7 +170,7 @@
 		
 	};
 	Array.from(document.getElementsByClassName('tab-bar-item')).forEach(el => el.addEventListener('click', onTabItemClick));
-	onTabItemClick({currentTarget: tabBar.firstElementChild});
+	onTabItemClick({currentTarget: tabBar.firstElementChild.nextElementSibling});
 
 </script>
 </body>
