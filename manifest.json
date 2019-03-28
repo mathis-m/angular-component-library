@@ -1,6 +1,6 @@
 {
 	"short_name": "TabBar",
 	"name": "Tab Bar",
-	"display": "standalone",
+	"display": "fullscreen",
 	"theme_color": "#dd2c00"
 }
