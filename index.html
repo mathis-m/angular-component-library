@@ -58,19 +58,29 @@
 	
 	.tab-bar-item.childSelected {
 		opacity: 0;
+		transition: opacity 0s;
+		stroke-dasharray: 0, 25;
+		margin-top: -60px;
 	}
 	
 	.tab-bar-item {
 		opacity: 1;
+		stroke-dasharray: 25, 0;
+		margin-top: 0;
+		transition: opacity 0.5s, stroke-dasharray 1s, margin-top 0.5s;
 	}
 	
 	.tab-bar-item-svg.selectedNewPre.selectedNew {
 		stroke-dasharray: 25, 0;
+		opacity: 1;
+		margin-top: 0;
 	}
 	
 	.tab-bar-item-svg.selectedNewPre {
-		transition: stroke-dasharray 1s;
+		transition: stroke-dasharray 1s ease 0.5s, opacity 0.5s, margin-top 0.5s;
 		stroke-dasharray: 0, 25;
+		opacity: 0;
+		margin-top: 60px;
 	}
 	
 	.tab-bar-item-svg {
@@ -89,28 +99,22 @@
 	<div class="tab-bar">
 		<div class="tab-bar-item">
 			<div class="tab-bar-item-icon">
-				<div class="material-icons tab-bar-item-svg">person_outline</div>
-				<!--<svg xmlns="http://www.w3.org/2000/svg" height="100%" class="tab-bar-item-svg" viewBox="0 0 48 48">
-					<path
-						d="M6 34.5V42h7.5l22.13-22.13-7.5-7.5L6 34.5zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"/>
-					<path d="M0 0h48v48H0z" fill="none" stroke="transparent"/>
-				</svg>-->
-			</div>
-		</div>
-		<div class="tab-bar-item">
-			<div class="tab-bar-item-icon">
 				<svg xmlns="http://www.w3.org/2000/svg" height="100%" class="tab-bar-item-svg" viewBox="0 0 48 48">
-					<path d="	M20 40V28h8v12h10V24h6L24 6 4 24h6v16z"/>
-					<path d="M0 0h48v48H0z" fill="none" stroke="transparent"/>
+					<text x="0" y="48" style="font-size: 48px" class="material-icons">edit</text>
 				</svg>
 			</div>
 		</div>
 		<div class="tab-bar-item">
 			<div class="tab-bar-item-icon">
 				<svg xmlns="http://www.w3.org/2000/svg" height="100%" class="tab-bar-item-svg" viewBox="0 0 48 48">
-					<path d="M0 0h48v48H0z" fill="none" stroke="transparent"/>
-					<path
-						d="M18 32h4V16h-4v16zm6-28C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm0 36c-8.82 0-16-7.18-16-16S15.18 8 24 8s16 7.18 16 16-7.18 16-16 16zm2-8h4V16h-4v16z"/>
+					<text x="0" y="48" style="font-size: 48px" class="material-icons">home</text>
+				</svg>
+			</div>
+		</div>
+		<div class="tab-bar-item">
+			<div class="tab-bar-item-icon">
+				<svg xmlns="http://www.w3.org/2000/svg" height="100%" class="tab-bar-item-svg" viewBox="0 0 48 48">
+					<text x="0" y="48" style="font-size: 48px" class="material-icons">person</text>
 				</svg>
 			</div>
 		</div>
