@@ -60,18 +60,16 @@
 	
 	.tab-bar-item {
 		opacity: 1;
-		transition: opacity 0.2s ease-out;
 	}
 	
-	.tab-bar-item-svg.selected {
-		max-height: 70%;
-		min-height: 70%;
-		stroke: black;
-		stroke-width: 2px;
-		stroke-linejoin: round;
-		fill: none;
-		stroke-dasharray: 15;
-		stroke-dashoffset: 4000;
+	.tab-bar-item-svg.selectedNewPre.selectedNew {
+		stroke-dasharray: 40,0;
+	}
+	
+	.tab-bar-item-svg.selectedNewPre {
+		transition: stroke-dasharray 1s;
+		stroke-dashoffset: 20;
+		stroke-dasharray: 40, 30;
 	}
 	
 	.tab-bar-item-svg {
@@ -81,9 +79,6 @@
 		stroke-width: 2px;
 		stroke-linejoin: round;
 		fill: none;
-		stroke-dasharray: 0;
-		stroke-dashoffset: 0;
-		transition: stroke-dashoffset 30s ease-in, stroke-dasharray 1s;
 	}
 </style>
 <body>
@@ -129,7 +124,7 @@
 	};
 	
 	//			svg has same pos and size like tabBarDom Move to left lower corner to l_u_c to item l_u_c
-	const pathTemplate = (tabBarDOMRect, itemDOMRect) => ` <path fill='white'  d='M0 ${tabBarDOMRect.height} V 0 H ${itemDOMRect.left - tabBarDOMRect.left - itemDOMRect.width} C ${(itemDOMRect.left - tabBarDOMRect.left)} 0, ${(itemDOMRect.left - tabBarDOMRect.left - itemDOMRect.width / 2)} ${itemDOMRect.height / 2},${(itemDOMRect.left - tabBarDOMRect.left) + itemDOMRect.width / 2} ${itemDOMRect.height / 2} C ${(itemDOMRect.left - tabBarDOMRect.left + itemDOMRect.width)} ${itemDOMRect.height / 2},${itemDOMRect.left - tabBarDOMRect.left + itemDOMRect.width} 0, ${itemDOMRect.left - tabBarDOMRect.left + itemDOMRect.width * 2} 0 H ${tabBarDOMRect.width} V ${tabBarDOMRect.height} Z	'/>`;
+	const pathTemplate = (tabBarDOMRect, itemDOMRect) => ` <path fill='white'  d='M0 ${tabBarDOMRect.height} V 0 H ${itemDOMRect.left - tabBarDOMRect.left - itemDOMRect.width * 2} C ${(itemDOMRect.left - tabBarDOMRect.left - itemDOMRect.width)} 0, ${(itemDOMRect.left - tabBarDOMRect.left) - itemDOMRect.width} ${itemDOMRect.height},${(itemDOMRect.left - tabBarDOMRect.left) + itemDOMRect.width / 2} ${itemDOMRect.height} C ${(itemDOMRect.left - tabBarDOMRect.left + itemDOMRect.width * 2)} ${itemDOMRect.height},${itemDOMRect.left - tabBarDOMRect.left + itemDOMRect.width * 2} 0, ${itemDOMRect.left - tabBarDOMRect.left + itemDOMRect.width * 3} 0 H ${tabBarDOMRect.width} V ${tabBarDOMRect.height} Z	'/>`;
 	const svgTemplate = (tabBarDOMRect, itemDOMRect) => `"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='${tabBarDOMRect.width}' height='${tabBarDOMRect.height}'>${pathTemplate(tabBarDOMRect, itemDOMRect)}</svg>"`;
 	const tabBar = document.getElementsByClassName('tab-bar')[0];
 	
@@ -140,32 +135,38 @@
 	let toDel;
 	
 	const onTabItemClick = ($event) => {
-		if(toDel)
+		if (toDel)
 			toDel.remove();
 		removeSelected();
 		
 		let svg = $event.currentTarget.firstElementChild.firstElementChild;
-		const newSvg = svg.parentNode.cloneNode(true);
+		const newSvg = svg.parentNode.parentNode.cloneNode(true);
 		
 		svg.classList.add('selected');
 		style.innerHTML = `.bg{ background-image: url(${svgTemplate(tabBar.getBoundingClientRect(), $event.currentTarget.firstElementChild.getBoundingClientRect())}); }`;
 		$event.currentTarget.classList.add('childSelected');
 		tabBar.classList.add('bg');
 		
-		let boundingClientRect = svg.getBoundingClientRect();
+		let boundingClientRect = svg.parentNode.parentNode.getBoundingClientRect();
 		toDel = newSvg;
 		newSvg.classList.add('s');
 		newSvg.style.position = 'absolute';
-		newSvg.firstElementChild.style.stroke = 'white';
-		newSvg.firstElementChild.style.strokeWidth = '2px';
-		newSvg.style.top = `${boundingClientRect.top - boundingClientRect.height / 2}px`;
+		newSvg.firstElementChild.firstElementChild.style.stroke = '#dd2c00';
+		newSvg.firstElementChild.firstElementChild.style.strokeWidth = '2px';
+		newSvg.firstElementChild.firstElementChild.style.borderRadius = '100%';
+		newSvg.firstElementChild.firstElementChild.style.backgroundColor= 'white';
+		newSvg.firstElementChild.firstElementChild.style.padding = '10px';
+		newSvg.firstElementChild.firstElementChild.classList.add('selectedNewPre');
+		newSvg.style.top = `${boundingClientRect.top - boundingClientRect.height/2}px`;
 		newSvg.style.left = `${boundingClientRect.left}px`;
 		
 		newSvg.style.width = `${boundingClientRect.width}px`;
 		newSvg.style.height = `${boundingClientRect.height}px`;
 		tabBar.appendChild(newSvg);
 		
-		setTimeout(() => newSvg.firstElementChild.classList.add('selected'), 10);
+		setTimeout(() => {
+			newSvg.firstElementChild.firstElementChild.classList.add('selectedNew');
+		}, 10);
 		
 	};
 	Array.from(document.getElementsByClassName('tab-bar-item')).forEach(el => el.addEventListener('click', onTabItemClick));
