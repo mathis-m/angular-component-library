@@ -178,7 +178,7 @@
 		newSvg.firstElementChild.firstElementChild.style.padding = '10px';
 		newSvg.firstElementChild.firstElementChild.classList.add('selectedNewPre');
 		newSvg.style.top = `${boundingClientRect.top - (boundingClientRect.height*1.5) / 2}px`;
-		newSvg.style.left = `${boundingClientRect.left -(boundingClientRect.width*0.25)}px`;
+		newSvg.style.left = `${boundingClientRect.left + 5 -(boundingClientRect.width*0.25)}px`;
 		
 		let number = boundingClientRect.width*1.5;
 		newSvg.style.width = `calc(${number}px - 10px)`;
