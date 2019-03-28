@@ -2,5 +2,6 @@
 	"short_name": "TabBar",
 	"name": "Tab Bar",
 	"display": "fullscreen",
-	"theme_color": "#dd2c00"
+	"theme_color": "#dd2c00",
+	"start_url": "/manifest.json"
 }
