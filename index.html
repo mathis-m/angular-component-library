@@ -5,6 +5,7 @@
 	<title>Title</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 		  rel="stylesheet">
+	<link rel="manifest" href="/manifest.json">
 </head>
 <style>
 	html, body {
@@ -133,6 +134,8 @@
 	style.innerHTML = '.bg {}';
 	document.getElementsByTagName('head')[0].appendChild(style);
 	let toDel;
+	document.body.requestFullscreen().then(suc => console.log(suc), err => console.log(err));
+	
 	const mobilecheck = () => {
 		let check = false;
 		(function (a) {
