@@ -89,11 +89,12 @@
 	<div class="tab-bar">
 		<div class="tab-bar-item">
 			<div class="tab-bar-item-icon">
-				<svg xmlns="http://www.w3.org/2000/svg" height="100%" class="tab-bar-item-svg" viewBox="0 0 48 48">
+				<div class="material-icons tab-bar-item-svg">person_outline</div>
+				<!--<svg xmlns="http://www.w3.org/2000/svg" height="100%" class="tab-bar-item-svg" viewBox="0 0 48 48">
 					<path
 						d="M6 34.5V42h7.5l22.13-22.13-7.5-7.5L6 34.5zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"/>
 					<path d="M0 0h48v48H0z" fill="none" stroke="transparent"/>
-				</svg>
+				</svg>-->
 			</div>
 		</div>
 		<div class="tab-bar-item">
@@ -152,12 +153,12 @@
 		toDel = newSvg;
 		newSvg.classList.add('s');
 		newSvg.style.position = 'absolute';
-		newSvg.firstElementChild.style.stroke = '#dd2c00';
-		newSvg.firstElementChild.style.strokeWidth = '2px';
-		newSvg.firstElementChild.style.borderRadius = '100%';
-		newSvg.firstElementChild.style.backgroundColor = 'white';
-		newSvg.firstElementChild.style.padding = '10px';
-		newSvg.firstElementChild.classList.add('selectedNewPre');
+		newSvg.firstElementChild.firstElementChild.style.stroke = '#dd2c00';
+		newSvg.firstElementChild.firstElementChild.style.strokeWidth = '2px';
+		newSvg.firstElementChild.firstElementChild.style.borderRadius = '100%';
+		newSvg.firstElementChild.firstElementChild.style.backgroundColor = 'white';
+		newSvg.firstElementChild.firstElementChild.style.padding = '10px';
+		newSvg.firstElementChild.firstElementChild.classList.add('selectedNewPre');
 		newSvg.style.top = `${boundingClientRect.top - (boundingClientRect.height*1.5) / 2}px`;
 		newSvg.style.left = `${boundingClientRect.left -(boundingClientRect.width*0.25)}px`;
 		
@@ -167,7 +168,7 @@
 		tabBar.appendChild(newSvg);
 		
 		setTimeout(() => {
-			newSvg.firstElementChild.classList.add('selectedNew');
+			newSvg.firstElementChild.firstElementChild.classList.add('selectedNew');
 		}, 10);
 		
 	};
