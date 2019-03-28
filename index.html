@@ -152,21 +152,21 @@
 		toDel = newSvg;
 		newSvg.classList.add('s');
 		newSvg.style.position = 'absolute';
-		newSvg.firstElementChild.firstElementChild.style.stroke = '#dd2c00';
-		newSvg.firstElementChild.firstElementChild.style.strokeWidth = '2px';
-		newSvg.firstElementChild.firstElementChild.style.borderRadius = '100%';
-		newSvg.firstElementChild.firstElementChild.style.backgroundColor = 'white';
-		newSvg.firstElementChild.firstElementChild.style.padding = '10px';
-		newSvg.firstElementChild.firstElementChild.classList.add('selectedNewPre');
-		newSvg.firstElementChild.style.top = `${boundingClientRect.top - (boundingClientRect.height*1.5) / 2}px`;
-		newSvg.firstElementChild.style.left = `${boundingClientRect.left -(boundingClientRect.width*0.25)}px`;
+		newSvg.firstElementChild.style.stroke = '#dd2c00';
+		newSvg.firstElementChild.style.strokeWidth = '2px';
+		newSvg.firstElementChild.style.borderRadius = '100%';
+		newSvg.firstElementChild.style.backgroundColor = 'white';
+		newSvg.firstElementChild.style.padding = '10px';
+		newSvg.firstElementChild.classList.add('selectedNewPre');
+		newSvg.style.top = `${boundingClientRect.top - (boundingClientRect.height*1.5) / 2}px`;
+		newSvg.style.left = `${boundingClientRect.left -(boundingClientRect.width*0.25)}px`;
 		
-		newSvg.firstElementChild.style.width = `calc(${boundingClientRect.width*1.5}px - 10px)`;
-		newSvg.firstElementChild.style.height = `calc(${boundingClientRect.height*1.5}px - 10px)`;
+		newSvg.style.width = `calc(${boundingClientRect.width*1.5}px - 10px)`;
+		newSvg.style.height = `calc(${boundingClientRect.height*1.5}px - 10px)`;
 		tabBar.appendChild(newSvg);
 		
 		setTimeout(() => {
-			newSvg.firstElementChild.firstElementChild.classList.add('selectedNew');
+			newSvg.firstElementChild.classList.add('selectedNew');
 		}, 10);
 		
 	};
