@@ -3,5 +3,5 @@
 	"name": "Tab Bar",
 	"display": "fullscreen",
 	"theme_color": "#dd2c00",
-	"start_url": "/"
+	"start_url": "/component-library/"
 }
