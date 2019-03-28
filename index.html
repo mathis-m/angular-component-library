@@ -161,8 +161,8 @@
 		newSvg.style.top = `${boundingClientRect.top - boundingClientRect.height / 2}px`;
 		newSvg.style.left = `${boundingClientRect.left}px`;
 		
-		newSvg.style.width = `calc(${boundingClientRect.width}px - 10px)`;
-		newSvg.style.height = `calc(${boundingClientRect.height}px - 10px)`;
+		newSvg.style.width = `calc(${boundingClientRect.width*1.5}px - 10px)`;
+		newSvg.style.height = `calc(${boundingClientRect.height*1.5}px - 10px)`;
 		tabBar.appendChild(newSvg);
 		
 		setTimeout(() => {
