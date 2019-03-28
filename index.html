@@ -25,7 +25,6 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		overflow: hidden;
 	}
 	
 	.tab-bar-item {
@@ -149,7 +148,7 @@
 		$event.currentTarget.classList.add('childSelected');
 		tabBar.classList.add('bg');
 		
-		let boundingClientRect = svg.parentNode.parentNode.getBoundingClientRect();
+		let boundingClientRect = svg.parentNode.getBoundingClientRect();
 		toDel = newSvg;
 		newSvg.classList.add('s');
 		newSvg.style.position = 'absolute';
@@ -164,7 +163,7 @@
 		
 		newSvg.style.width = `calc(${boundingClientRect.width*1.5}px - 10px)`;
 		newSvg.style.height = `calc(${boundingClientRect.height*1.5}px - 10px)`;
-		tabBar.appendChild(newSvg);
+		tabBar.appendChild(newSvg.firstElementChild);
 		
 		setTimeout(() => {
 			newSvg.firstElementChild.firstElementChild.classList.add('selectedNew');
