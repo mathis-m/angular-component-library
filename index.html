@@ -158,12 +158,12 @@
 		newSvg.firstElementChild.firstElementChild.style.backgroundColor = 'white';
 		newSvg.firstElementChild.firstElementChild.style.padding = '10px';
 		newSvg.firstElementChild.firstElementChild.classList.add('selectedNewPre');
-		newSvg.style.top = `${boundingClientRect.top - (boundingClientRect.height*1.5) / 2}px`;
-		newSvg.style.left = `${boundingClientRect.left -(boundingClientRect.width*0.25)}px`;
+		newSvg.firstElementChild.style.top = `${boundingClientRect.top - (boundingClientRect.height*1.5) / 2}px`;
+		newSvg.firstElementChild.style.left = `${boundingClientRect.left -(boundingClientRect.width*0.25)}px`;
 		
-		newSvg.style.width = `calc(${boundingClientRect.width*1.5}px - 10px)`;
-		newSvg.style.height = `calc(${boundingClientRect.height*1.5}px - 10px)`;
-		tabBar.appendChild(newSvg.firstElementChild);
+		newSvg.firstElementChild.style.width = `calc(${boundingClientRect.width*1.5}px - 10px)`;
+		newSvg.firstElementChild.style.height = `calc(${boundingClientRect.height*1.5}px - 10px)`;
+		tabBar.appendChild(newSvg);
 		
 		setTimeout(() => {
 			newSvg.firstElementChild.firstElementChild.classList.add('selectedNew');
