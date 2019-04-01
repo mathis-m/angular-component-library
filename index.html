@@ -152,7 +152,6 @@
 </div>
 
 <script>
-	let t_id = 0;
 	const cards = [];
 	// api
 	
@@ -172,10 +171,10 @@
 	};
 	
 	const addCard = (title, icon) => {
+		const t_id = cards.length;
 		cards.push({id: t_id, title, icon});
 		tabBar.insertAdjacentElement('beforeend', (new DOMParser).parseFromString(tabBarItemTemplate(icon), 'text/html').body.firstElementChild);
 		tabBar.lastElementChild.addEventListener('click', ($event) => onTabItemClick($event, t_id));
-		t_id++;
 	};
 	
 	
@@ -256,7 +255,6 @@
 		}
 	].forEach(card => addCard(card.title, card.icon));
 	tabBar.firstElementChild.click();
-	onTabItemClick({currentTarget: tabBar.firstElementChild}, 0);
 
 </script>
 </body>
