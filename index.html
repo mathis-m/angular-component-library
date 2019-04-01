@@ -174,7 +174,8 @@
 	const addCard = (title, icon) => {
 		cards.push({id: t_id, title, icon});
 		tabBar.insertAdjacentElement('beforeend', (new DOMParser).parseFromString(tabBarItemTemplate(icon), 'text/html').body.firstElementChild);
-		tabBar.lastElementChild.addEventListener('click', ($event) => onTabItemClick($event, t_id++));
+		tabBar.lastElementChild.addEventListener('click', ($event) => onTabItemClick($event, t_id));
+		t_id++;
 	};
 	
 	
