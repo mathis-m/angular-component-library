@@ -7,13 +7,16 @@
 	<title>Title</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 		  rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <style>
 	html, body {
+		font-family: "Roboto", sans-serif;
 		width: 100%;
 		height: 100%;
 		margin: 0;
 		background-color: #dd2c00;
+		color: white;
 	}
 	
 	.tab-bar {
@@ -48,7 +51,7 @@
 	body {
 		display: flex;
 		flex-direction: column;
-		justify-content: flex-end;
+		justify-content: space-between;
 	}
 	
 	.footer {
@@ -92,12 +95,64 @@
 		fill: none;
 	}
 </style>
-<body>
 
+<style>
+	
+	.button {
+		width: fit-content;
+		height: fit-content;
+	}
+
+</style>
+
+<style>
+	.card {
+		width: 100%;
+		height: 100%;
+	}
+	
+	.card-header {
+		width: 100%;
+		height: 6.5%;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+		
+		background-color: white;
+		color: black;
+		box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.42);
+	}
+	
+	.card-header-title {
+		margin-left: 5px;
+		font-size: 5vh;
+	}
+
+</style>
+<!-- Card -->
+<body>
+<div class="card">
+	<div class="card-header">
+		<div class="card-header-title">
+			Some
+		</div>
+	</div>
+	<div class="card-content">
+		<p class="sampleContent">
+			Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+			dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+			clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+			consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+			sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+			sea takimata sanctus est Lorem ipsum dolor sit amet.
+		</p>
+	</div>
+</div>
 
 <div class="footer">
 	<div class="tab-bar">
-		<div class="tab-bar-item">
+		<!--<div class="tab-bar-item">
 			<div class="tab-bar-item-icon">
 				<svg xmlns="http://www.w3.org/2000/svg" height="100%" class="tab-bar-item-svg" viewBox="0 0 48 48">
 					<text x="0" y="48" style="font-size: 48px" class="material-icons">edit</text>
@@ -131,11 +186,38 @@
 					<text x="0" y="48" style="font-size: 48px" class="material-icons">settings</text>
 				</svg>
 			</div>
-		</div>
+		</div>-->
 	</div>
 </div>
 
 <script>
+	let t_id = 0;
+	const cards = [];
+	// api
+	
+	const tabBarItemTemplate = (icon) => `
+	<div class="tab-bar-item">
+		<div class="tab-bar-item-icon">
+			<svg xmlns="http://www.w3.org/2000/svg" height="100%" class="tab-bar-item-svg" viewBox="0 0 48 48">
+				<text x="0" y="48" style="font-size: 48px" class="material-icons">${icon}</text>
+			</svg>
+		</div>
+	</div>
+	`;
+	const tabBar = document.getElementsByClassName('tab-bar')[0];
+	const cardTitle = document.getElementsByClassName('card-header-title')[0];
+	const setTitle = (title) => {
+		cardTitle.innerHTML = title;
+	};
+	
+	const addCard = (title, icon) => {
+		cards.push({id: t_id, title, icon});
+		tabBar.insertAdjacentElement('beforeend', (new DOMParser).parseFromString(tabBarItemTemplate(icon), 'text/html').body.firstElementChild);
+		tabBar.lastElementChild.addEventListener('click', ($event) => onTabItemClick($event, t_id++));
+	};
+	
+	
+	// tab bar
 	const removeSelected = () => {
 		return Array.from(document.getElementsByClassName('selected')).forEach(el => {
 			Array.from(document.getElementsByClassName('childSelected')).forEach(e => e.classList.remove('childSelected'));
@@ -144,17 +226,16 @@
 	};
 	
 	//			svg has same pos and size like tabBarDom Move to left lower corner to l_u_c to item l_u_c
-	const pathTemplate = (tabBarDOMRect, itemDOMRect) => ` <path fill='white'  d='M0 ${tabBarDOMRect.height} V 0 H ${itemDOMRect.left - tabBarDOMRect.left - itemDOMRect.width*1.5 } C ${(itemDOMRect.left - tabBarDOMRect.left)} 0, ${(itemDOMRect.left - tabBarDOMRect.left) - 0.5 * itemDOMRect.width} ${itemDOMRect.height/1.5},${(itemDOMRect.left - tabBarDOMRect.left) + itemDOMRect.width / 2} ${itemDOMRect.height/1.5} C ${(itemDOMRect.left - tabBarDOMRect.left + itemDOMRect.width*1.5)} ${itemDOMRect.height/1.5},${itemDOMRect.left - tabBarDOMRect.left + itemDOMRect.width * 1} 0, ${itemDOMRect.left - tabBarDOMRect.left + itemDOMRect.width * 2.5} 0 H ${tabBarDOMRect.width} V ${tabBarDOMRect.height} Z	'/>`;
+	const pathTemplate = (tabBarDOMRect, itemDOMRect) => ` <path fill='white'  d='M0 ${tabBarDOMRect.height} V 0 H ${itemDOMRect.left - tabBarDOMRect.left - itemDOMRect.width * 1.5} C ${(itemDOMRect.left - tabBarDOMRect.left)} 0, ${(itemDOMRect.left - tabBarDOMRect.left) - 0.5 * itemDOMRect.width} ${itemDOMRect.height / 1.5},${(itemDOMRect.left - tabBarDOMRect.left) + itemDOMRect.width / 2} ${itemDOMRect.height / 1.5} C ${(itemDOMRect.left - tabBarDOMRect.left + itemDOMRect.width * 1.5)} ${itemDOMRect.height / 1.5},${itemDOMRect.left - tabBarDOMRect.left + itemDOMRect.width * 1} 0, ${itemDOMRect.left - tabBarDOMRect.left + itemDOMRect.width * 2.5} 0 H ${tabBarDOMRect.width} V ${tabBarDOMRect.height} Z	'/>`;
 	const svgTemplate = (tabBarDOMRect, itemDOMRect) => `"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='${tabBarDOMRect.width}' height='${tabBarDOMRect.height}'>${pathTemplate(tabBarDOMRect, itemDOMRect)}</svg>"`;
-	const tabBar = document.getElementsByClassName('tab-bar')[0];
 	
 	const style = document.createElement('style');
 	style.type = 'text/css';
 	style.innerHTML = '.bg {}';
 	document.getElementsByTagName('head')[0].appendChild(style);
 	let toDel;
-
-	const onTabItemClick = ($event) => {
+	const onTabItemClick = ($event, id) => {
+		setTitle(cards[id].title);
 		if (toDel)
 			toDel.remove();
 		removeSelected();
@@ -177,10 +258,10 @@
 		newSvg.firstElementChild.firstElementChild.style.backgroundColor = 'white';
 		newSvg.firstElementChild.firstElementChild.style.padding = '10px';
 		newSvg.firstElementChild.firstElementChild.classList.add('selectedNewPre');
-		newSvg.style.top = `${boundingClientRect.top - (boundingClientRect.height*1.5) / 2}px`;
-		newSvg.style.left = `${boundingClientRect.left + 5 -(boundingClientRect.width*0.25)}px`;
+		newSvg.style.top = `${boundingClientRect.top - (boundingClientRect.height * 1.5) / 2}px`;
+		newSvg.style.left = `${boundingClientRect.left + 5 - (boundingClientRect.width * 0.25)}px`;
 		
-		let number = boundingClientRect.width*1.5;
+		let number = boundingClientRect.width * 1.5;
 		newSvg.style.width = `calc(${number}px - 10px)`;
 		newSvg.style.height = `calc(${number}px - 10px)`;
 		tabBar.appendChild(newSvg);
@@ -190,8 +271,29 @@
 		}, 10);
 		
 	};
-	Array.from(document.getElementsByClassName('tab-bar-item')).forEach(el => el.addEventListener('click', onTabItemClick));
-	onTabItemClick({currentTarget: tabBar.firstElementChild.nextElementSibling});
+	[
+		{
+			icon: 'edit',
+			title: 'Edit Something'
+		},
+		{
+			icon: 'list',
+			title: 'News Feed'
+		},
+		{
+			icon: 'home',
+			title: 'Home'
+		},
+		{
+			icon: 'person',
+			title: 'Profile'
+		},
+		{
+			icon: 'settings',
+			title: 'Settings'
+		}
+	].forEach(card => addCard(card.title, card.icon));
+	onTabItemClick({currentTarget: tabBar.firstElementChild.nextElementSibling}, 1);
 
 </script>
 </body>
