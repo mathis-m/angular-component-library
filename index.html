@@ -196,7 +196,7 @@
 	document.getElementsByTagName('head')[0].appendChild(style);
 	let toDel;
 	const onTabItemClick = ($event, id) => {
-		setTitle(cards[id].title);
+		setTitle(cards.find(c => c.id === id).title);
 		if (toDel)
 			toDel.remove();
 		removeSelected();
@@ -254,7 +254,8 @@
 			title: 'Settings'
 		}
 	].forEach(card => addCard(card.title, card.icon));
-	onTabItemClick({currentTarget: tabBar.firstElementChild.nextElementSibling}, 1);
+	tabBar.firstElementChild.click();
+	onTabItemClick({currentTarget: tabBar.firstElementChild}, 0);
 
 </script>
 </body>
